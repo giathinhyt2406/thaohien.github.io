@@ -752,3 +752,99 @@ a:focus-visible, button:focus-visible {
         margin-top: 20px;
     }
 }
+
+/* --- Publications Section --- */
+.publications-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pub-item {
+    display: flex;
+    gap: 25px;
+    background: var(--bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-left: 4px solid var(--accent);
+    padding: 25px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="light"] .pub-item {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-left: 4px solid var(--accent);
+}
+
+.pub-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.1); /* Uses the soft green accent */
+}
+
+.pub-year {
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 1.15rem;
+    min-width: 70px;
+    padding-top: 2px;
+}
+
+.pub-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pub-title {
+    margin: 0;
+    color: var(--text-bright);
+    font-size: 1.15rem;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.pub-authors {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.95rem;
+}
+
+.pub-journal {
+    margin: 0;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.pub-status {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.15); /* Soft green background */
+    color: var(--accent);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-style: normal;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Mobile Responsiveness for Publications */
+@media (max-width: 600px) {
+    .pub-item {
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
+    }
+    .pub-year {
+        padding-top: 0;
+        font-size: 1rem;
+    }
+    .pub-status {
+        margin-left: 0;
+        margin-top: 8px;
+        display: inline-block;
+        width: max-content;
+    }
+}
