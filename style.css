@@ -1,17 +1,21 @@
 :root {
-    --bg: #0b0e14;
-    --card: #161b22;
-    --accent: #58a6ff;
-    --text: #c9d1d9;
-    --text-bright: #ffffff;
+    /* Deep, soft forest/emerald for a relaxing dark mode */
+    --bg: #0d1f1a; 
+    --card: #142e27; 
+    /* Bioluminescent / Medical Green for the accent */
+    --accent: #10b981; 
+    --text: #cbd5e1;
+    --text-bright: #f8fafc;
 }
 
 [data-theme="light"] {
-    --bg: #fff5e8;
+    /* Soft, easing mint/sage green for a clean, natural lab feel */
+    --bg: #edf8f5; 
     --card: #ffffff;
-    --accent: #0969da;
-    --text: #24292f;
-    --text-bright: #1f2328;
+    /* Deep clinical green for light mode readability */
+    --accent: #059669; 
+    --text: #334155;
+    --text-bright: #064e3b;
 }
 
 /* Added Smooth Scrolling */
@@ -40,11 +44,18 @@ a:focus-visible, button:focus-visible {
     position: fixed;
     width: 100%;
     padding: 20px 0;
-    background: rgba(11, 14, 20, 0.8);
+    /* Matched to the new dark green bg */
+    background: rgba(13, 31, 26, 0.85); 
     backdrop-filter: blur(10px);
     z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+[data-theme="light"] .navbar {
+    /* Matched to the new light green bg */
+    background: rgba(237, 248, 245, 0.85); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
 .nav-content {
     max-width: 1100px;
     margin: 0 auto;
@@ -506,13 +517,14 @@ a:focus-visible, button:focus-visible {
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 12px;
+    padding: 15px 12px;
     box-sizing: border-box;
-    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    /* Blends into the new dark card color */
+    background: linear-gradient(to top, rgba(20, 46, 39, 0.95), transparent);
     display: flex;
     flex-direction: column;
     gap: 5px;
-    pointer-events: none; /* Prevents text from blocking hover effect */
+    pointer-events: none;
 }
 
 .interest-info i {
