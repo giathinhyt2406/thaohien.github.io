@@ -304,3 +304,86 @@ document.addEventListener("DOMContentLoaded", () => {
     // Generate a new leaf every 800 milliseconds
     setInterval(createLeaf, 800);
 });
+// 8. Molecular Network Effect (Drug-Protein Interactions)
+    const canvas = document.createElement('canvas');
+    canvas.id = 'science-canvas';
+    document.body.prepend(canvas); // Adds to the very background
+    const ctx = canvas.getContext('2d');
+
+    // Style the canvas to sit fixed in the background
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.width = '100vw';
+    canvas.style.height = '100vh';
+    canvas.style.zIndex = '-1'; // Behind everything
+    canvas.style.pointerEvents = 'none';
+    canvas.style.opacity = '0.4'; // Subtle so it doesn't distract
+
+    let width, height;
+    let particles = [];
+
+    // Resize canvas to fit screen
+    function resize() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Particle class representing molecules
+    class Particle {
+        constructor() {
+            this.x = Math.random() * width;
+            this.y = Math.random() * height;
+            this.vx = (Math.random() - 0.5) * 0.5; // Slow drift
+            this.vy = (Math.random() - 0.5) * 0.5;
+            this.radius = Math.random() * 2 + 1;
+        }
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+            // Bounce off edges
+            if (this.x < 0 || this.x > width) this.vx *= -1;
+            if (this.y < 0 || this.y > height) this.vy *= -1;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'rgba(16, 185, 129, 0.8)'; // Using your theme's accent green
+            ctx.fill();
+        }
+    }
+
+    // Create 60 molecules
+    for (let i = 0; i < 60; i++) particles.push(new Particle());
+
+    // Animate and connect the molecules
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+
+        // Draw connecting bonds if molecules are close to each other
+        for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                if (dist < 120) { // Connection radius threshold
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(16, 185, 129, ${0.4 - dist/300})`; // Fades as they move apart
+                    ctx.lineWidth = 0.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
