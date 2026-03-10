@@ -72,7 +72,6 @@ window.addEventListener('scroll', () => {
 });
 
 // --- UNIQUE FEATURE 2: Typewriter Effect ---
-const subtitleText = "E-Commerce Specialist | Senior @ UIT-VNU";
 const typewriterElement = document.getElementById('typewriter');
 let typeIndex = 0;
 
