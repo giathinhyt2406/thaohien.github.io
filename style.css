@@ -848,3 +848,24 @@ a:focus-visible, button:focus-visible {
         width: max-content;
     }
 }
+
+/* DOI Link Styling */
+.pub-doi {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.pub-doi i {
+    font-size: 0.8rem;
+    margin-right: 4px;
+}
+
+.pub-doi:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
